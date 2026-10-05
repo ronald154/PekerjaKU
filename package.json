@@ -2,7 +2,7 @@
   "name": "pekerjaku",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "expo-router/entry",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,10 +19,11 @@
   },
   "homepage": "https://github.com/ronald154/PekerjaKU#readme",
   "dependencies": {
-    "expo": "^57.0.26",
-    "react": "^19.3.0",
-    "react-native": "^0.87.1"
-  },
+    "expo": "~57.0.0",
+    "react": "19.0.0",
+    "react-native": "0.79.2",
+    "expo-router": "~5.0.0"
+  }, 
   "devDependencies": {
     "@types/react": "~19.2.4",
     "typescript": "~6.0.3"
