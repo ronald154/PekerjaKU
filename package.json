@@ -20,11 +20,13 @@
   "homepage": "https://github.com/ronald154/PekerjaKU#readme",
   "dependencies": {
     "expo": "~57.0.0",
-    "react": "19.0.0",
-    "react-native": "0.79.2",
-    "expo-router": "~5.0.0"
-  }, 
+    "expo-router": "~57.0.24",
+    "query-string": "^9.5.1",
+    "react": "19.2.3",
+    "react-native": "0.86.3"
+  },
   "devDependencies": {
+    "@expo/ngrok": "^4.1.3",
     "@types/react": "~19.2.4",
     "typescript": "~6.0.3"
   }

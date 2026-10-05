@@ -7,7 +7,7 @@ export const jobs: Job[] = [
     category: "Kebersihan",
     description: "Membersihkan rumah",
     location: "Malang",
-    price: 75000,
+    price: 75000 ,
   },
   {
     id: "2",
