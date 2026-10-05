@@ -1,0 +1,30 @@
+{
+  "name": "pekerjaku",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronald154/PekerjaKU.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ronald154/PekerjaKU/issues"
+  },
+  "homepage": "https://github.com/ronald154/PekerjaKU#readme",
+  "dependencies": {
+    "expo": "^57.0.26",
+    "react": "^19.3.0",
+    "react-native": "^0.87.1"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.4",
+    "typescript": "~6.0.3"
+  }
+}
