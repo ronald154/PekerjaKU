@@ -1,5 +1,10 @@
 {
-  "plugins": [
-    "expo-router"
-  ]
+  "expo": {
+    "name": "pekerjaku",
+    "slug": "pekerjaku",
+    "scheme": "pekerjaku",
+    "plugins": [
+      "expo-router"
+    ]
+  }
 }

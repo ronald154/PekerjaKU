@@ -1,4 +1,4 @@
-```tsx
+
 import { Text, View, StyleSheet } from 'react-native';
 import { Job } from '../types/job';
 
@@ -137,4 +137,4 @@ const styles = StyleSheet.create({
     color: '#007AFF',
   },
 });
-```
+

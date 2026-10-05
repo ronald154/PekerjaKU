@@ -1,4 +1,4 @@
-```tsx
+
 import { Text, View, ScrollView, StyleSheet } from 'react-native';
 import { getJobs } from '../services/jobService';
 import JobCard from '../components/JobCard';
@@ -99,4 +99,4 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
 });
-```
+
