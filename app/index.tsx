@@ -1,10 +1,30 @@
-
-import { Text, View, ScrollView, StyleSheet } from 'react-native';
+import { useState, useEffect } from 'react';
+import { Text, View, ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 import { getJobs } from '../services/jobService';
 import JobCard from '../components/JobCard';
 
 export default function Index() {
-  const jobsList = getJobs();
+  const router = useRouter();
+
+  // 1. Modul 2: useState untuk data dan pencarian
+  const [jobsList, setJobsList] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // 2. Modul 2: useEffect untuk memuat data awal
+  useEffect(() => {
+    const data = getJobs();
+    setJobsList(data);
+  }, []);
+
+  // Filter pencarian real-time
+  const filteredJobs = jobsList.filter((job) => {
+    const query = searchQuery.toLowerCase();
+    const titleMatch = job.title ? job.title.toLowerCase().includes(query) : false;
+    const categoryMatch = job.category ? job.category.toLowerCase().includes(query) : false;
+    const locationMatch = job.location ? job.location.toLowerCase().includes(query) : false;
+    return titleMatch || categoryMatch || locationMatch || searchQuery === '';
+  });
 
   return (
     <ScrollView style={styles.container}>
@@ -16,19 +36,50 @@ export default function Index() {
         </Text>
       </View>
 
+      {/* Input Pencarian */}
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Cari pekerjaan atau kategori..."
+          placeholderTextColor="#999999"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+      </View>
+
       {/* Judul Daftar Pekerjaan */}
       <Text style={styles.sectionTitle}>Pekerjaan Tersedia</Text>
 
       {/* Daftar Pekerjaan */}
-      {jobsList.length > 0 ? (
-        jobsList.map((job) => (
-          <JobCard key={job.id} job={job} />
+      {filteredJobs.length > 0 ? (
+        filteredJobs.map((job) => (
+          <TouchableOpacity
+            key={job.id}
+            activeOpacity={0.8}
+            onPress={() =>
+              router.push({
+                pathname: '/detail',
+                params: {
+                  id: job.id,
+                  title: job.title || job.nama || 'Pekerjaan',
+                  category: job.category || job.kategori || 'PEKERJAAN',
+                  description: job.description || job.deskripsi || 'Membuat dan menyelesaikan pekerjaan sesuai kebutuhan spesifikasi klien.',
+                  location: job.location || job.lokasi || 'Online',
+                  price: job.price || job.salary || job.harga || 'Rp 100.000',
+                },
+              })
+            }
+          >
+            <JobCard job={job} />
+          </TouchableOpacity>
         ))
       ) : (
         <View style={styles.emptyContainer}>
           <Text style={styles.emptyTitle}>Belum Ada Pekerjaan</Text>
           <Text style={styles.emptyText}>
-            Saat ini belum tersedia pekerjaan untuk ditampilkan.
+            {searchQuery
+              ? 'Tidak ada pekerjaan yang sesuai dengan pencarianmu.'
+              : 'Saat ini belum tersedia pekerjaan untuk ditampilkan.'}
           </Text>
         </View>
       )}
@@ -48,7 +99,7 @@ const styles = StyleSheet.create({
 
   headerContainer: {
     paddingTop: 24,
-    paddingBottom: 20,
+    paddingBottom: 16,
   },
 
   appTitle: {
@@ -61,6 +112,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666666',
     marginTop: 6,
+  },
+
+  searchContainer: {
+    marginBottom: 16,
+  },
+
+  searchInput: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    fontSize: 14,
+    color: '#1A1A1A',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
   },
 
   sectionTitle: {
@@ -99,4 +165,3 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
 });
-
